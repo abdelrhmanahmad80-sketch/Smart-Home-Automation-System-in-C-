@@ -1,0 +1,50 @@
+output: main.o Brandonefactory.o Brandtwofactory.o Camera.o Cameraobserver.o Devicegroup.o Deviceleaf.o DoorLock.o Homecontroller.o Light.o Lightobserver.o Motionsensor.o Subject.o Thermostat.o Turnoncommand.o
+	g++ main.o Brandonefactory.o Brandtwofactory.o Camera.o Cameraobserver.o Devicegroup.o Deviceleaf.o DoorLock.o Homecontroller.o Light.o Lightobserver.o Motionsensor.o Subject.o Thermostat.o Turnoncommand.o -I./inc -o output
+
+main.o: ./src/main.cpp ./inc/Device.hpp ./inc/Devicegroup.hpp ./inc/Deviceleaf.hpp ./inc/Homecontroller.hpp ./inc/Brandonefactory.hpp ./inc/Brandtwofactory.hpp ./inc/Camera.hpp ./inc/Light.hpp ./inc/DoorLock.hpp ./inc/Subject.hpp ./inc/Observer.hpp
+	g++ -c ./src/main.cpp -I./inc -o main.o
+
+Brandonefactory.o: ./src/Brandonefactory.cpp ./inc/Brandonefactory.hpp ./inc/Devicefactory.hpp ./inc/Camera.hpp ./inc/Light.hpp ./inc/DoorLock.hpp ./inc/Thermostat.hpp ./inc/Motionsensor.hpp
+	g++ -c ./src/Brandonefactory.cpp -I./inc -o Brandonefactory.o
+
+Brandtwofactory.o: ./src/Brandtwofactory.cpp ./inc/Brandtwofactory.hpp ./inc/Devicefactory.hpp ./inc/Camera.hpp ./inc/Light.hpp ./inc/DoorLock.hpp ./inc/Thermostat.hpp ./inc/Motionsensor.hpp
+	g++ -c ./src/Brandtwofactory.cpp -I./inc -o Brandtwofactory.o
+
+Camera.o: ./src/Camera.cpp ./inc/Camera.hpp
+	g++ -c ./src/Camera.cpp -I./inc -o Camera.o
+
+Cameraobserver.o: ./src/Cameraobserver.cpp ./inc/Cameraobserver.hpp ./inc/Observer.hpp ./inc/Camera.hpp
+	g++ -c ./src/Cameraobserver.cpp -I./inc -o Cameraobserver.o
+
+Devicegroup.o: ./src/Devicegroup.cpp ./inc/Devicegroup.hpp ./inc/Devicecomponent.hpp
+	g++ -c ./src/Devicegroup.cpp -I./inc -o Devicegroup.o
+
+Deviceleaf.o: ./src/Deviceleaf.cpp ./inc/Deviceleaf.hpp ./inc/Device.hpp
+	g++ -c ./src/Deviceleaf.cpp -I./inc -o Deviceleaf.o
+
+DoorLock.o: ./src/DoorLock.cpp ./inc/DoorLock.hpp
+	g++ -c ./src/DoorLock.cpp -I./inc -o DoorLock.o
+
+Homecontroller.o: ./src/Homecontroller.cpp ./inc/Homecontroller.hpp ./inc/Devicecomponent.hpp ./inc/Devicegroup.hpp
+	g++ -c ./src/Homecontroller.cpp -I./inc -o Homecontroller.o
+
+Light.o: ./src/Light.cpp ./inc/Light.hpp
+	g++ -c ./src/Light.cpp -I./inc -o Light.o
+
+Lightobserver.o: ./src/Lightobserver.cpp ./inc/Lightobserver.hpp ./inc/Observer.hpp ./inc/Light.hpp
+	g++ -c ./src/Lightobserver.cpp -I./inc -o Lightobserver.o
+
+Motionsensor.o: ./src/Motionsensor.cpp ./inc/Motionsensor.hpp ./inc/Subject.hpp
+	g++ -c ./src/Motionsensor.cpp -I./inc -o Motionsensor.o
+
+Subject.o: ./src/Subject.cpp ./inc/Subject.hpp
+	g++ -c ./src/Subject.cpp -I./inc -o Subject.o
+
+Thermostat.o: ./src/Thermostat.cpp ./inc/Thermostat.hpp
+	g++ -c ./src/Thermostat.cpp -I./inc -o Thermostat.o
+
+Turnoncommand.o: ./src/Turnoncommand.cpp ./inc/Turnoncommand.hpp ./inc/Command.hpp
+	g++ -c ./src/Turnoncommand.cpp -I./inc -o Turnoncommand.o
+
+clean:
+	del *.o output 2>nul || rm -f *.o output
